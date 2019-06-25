@@ -3,7 +3,4 @@
 </button>
 
 <style>
-  button {
-    background: blue;
-  }
 </style>
