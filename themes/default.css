@@ -1,0 +1,107 @@
+:root {
+  /* hue primary */
+  --hp: 180;
+  /* hue secondary */
+  --hs: calc(var(--hp) - 50);
+  /* hue tertiary */
+  --ht: calc(var(--hp) + 200);
+
+  /* saturation full grayscale */
+  --sfg: 0%;
+  /* saturation grayscale */
+  --sg: 13%;
+  /* saturation semi grayscale */
+  --ssg: 35%;
+  /* saturation semi colore */
+  --ssc: 50%;
+  /* saturation colore */
+  --sc: 80%;
+  /* saturation full colore */
+  --sfc: 80%;
+
+  /* lightness full dark */
+  --lfd: 5%;
+  /* lightness dark */
+  --ld: 25%;
+  /* lightness semi dark */
+  --lsd: 47%;
+  /* lightness middle */
+  --lm: 80%;
+  /* lightness semi light */
+  --lsl: 90%;
+  /* lightness light */
+  --ll: 97%;
+  /* lightness full light */
+  --lfl: 99.5%;
+
+  /* alpha opaque */
+  --ao: 1;
+  /* alpha semi opaque */
+  --aso: 0.89;
+  /* alpha semi transparent */
+  --ast: 0.45;
+  /* alpha transparent */
+  --at: 0;
+
+  /* colors */
+  --primary-txt: hsl(var(--hp), var(--sg), var(--lsd));
+  --secondary-txt: hsl(var(--hs), var(--sg), var(--lsd));
+  --white-txt: hsl(0, 0%, var(--lfl));
+  --light-bg: hsl(var(--hp), var(--ssg), var(--ll));
+  --trans-bg: hsla(var(--hp), var(--ssg), var(--ll), 0.8);
+  --button-bg: hsl(var(--hp), var(--ssg), var(--lfl));
+  --button-bg-inverse: hsl(var(--hp), var(--sg), var(--lsd));
+  --button-bg-inverse-success: hsl(var(--hs), var(--sc), var(--lsd));
+  --button-bg-inverse-danger: hsl(var(--ht), var(--sc), var(--lsd));
+  --button-bg-success: hsl(var(--hs), var(--sc), var(--lsl));
+  --button-bg-danger: hsl(var(--ht), var(--sc), var(--lsl));
+  --white-bg: hsl(0, 0%, var(--lfl));
+  --border-color: hsl(var(--hp), var(--sg), var(--lsl));
+  --border-dark-color: hsl(var(--hp), var(--sfg), var(--lm));
+  --shadow-color: hsl(var(--hp), var(--sg), var(--lsl));
+  --shadow-trans-color: hsla(var(--hp), var(--sfg), var(--ld), 0.1);
+
+  /* text sizes */
+  --font-size: 100%;
+  --line-height: 1.5;
+  --h1-size: 1.3rem;
+  --h1-line-size: 2;
+  --button-font-size: 0.65rem;
+
+  /* font weights */
+  --font-weight: 400;
+  --font-weight-heading: 400;
+  --font-weight-bolder: 500;
+
+  /* shadows */
+  --shadow-small: 0 0 3px 0 var(--shadow-color);
+  --shadow-large: 0 0 11px 1px var(--shadow-color);
+  --button-shadow: var(--shadow-small);
+
+  /* borders */
+  --default-border: 0 none;
+  --button-border: 1px solid var(--border-color);
+
+  /* radiuses */
+  --radius-xsmall: 4px;
+  --button-border-radius: var(--radius-xsmall);
+
+  /* margins */
+  --margin-xsmall: 0.7rem;
+  --margin-small: 1.2rem;
+
+  /* paddings */
+  --padding-xsmall: 0.7rem;
+  --padding-small: 1.2rem;
+
+  /* container */
+  --container-width: 90%;
+  --container-max-width: 1200px;
+
+  /* header */
+  --header-width: 100%;
+  --header-height: 65px;
+
+  /* button */
+  --button-case: uppercase;
+}
