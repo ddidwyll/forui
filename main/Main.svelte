@@ -9,9 +9,6 @@
 </script>
 
 <style>
-  main {
-    margin-top: var(--margin-small);
-  }
   main > :global(div) {
     box-shadow: var(--shadow-large);
     border: var(--default-border);

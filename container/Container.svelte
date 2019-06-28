@@ -21,13 +21,13 @@
   div.scrollx {
     overflow-x: auto;
     overflow-x: overlay;
-    padding-top: var(--padding-small);
-    padding-bottom: var(--padding-small);
+    padding-top: var(--padding-container);
+    padding-bottom: var(--padding-container);
   }
   div.scrolly {
     overflow-y: auto;
     overflow-y: overlay;
-    padding-left: var(--padding-small);
-    padding-right: var(--padding-small);
+    padding-left: var(--padding-container);
+    padding-right: var(--padding-container);
   }
 </style>

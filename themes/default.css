@@ -89,10 +89,15 @@
   /* margins */
   --margin-xsmall: 0.7rem;
   --margin-small: 1.2rem;
+  --margin-container: 2vw;
 
   /* paddings */
   --padding-xsmall: 0.7rem;
   --padding-small: 1.2rem;
+  --padding-container: 2vw;
+
+  /* transitions */
+  --transition: all 0.1s ease-in;
 
   /* container */
   --container-width: 90%;

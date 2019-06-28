@@ -19,6 +19,7 @@
     background-color: var(--white-bg);
     border-bottom: var(--default-border);
     box-shadow: var(--shadow-large);
+    margin-bottom: var(--margin-container);
   }
   header > :global(div) {
     display: flex;
@@ -30,6 +31,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    padding: 2px 0;
   }
   header > :global(div > :last-child) {
     text-align: right;
