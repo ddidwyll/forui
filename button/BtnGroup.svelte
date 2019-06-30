@@ -17,6 +17,4 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-  div > :global(*:not(:last-child):not(:first-child)) {
-  }
 </style>

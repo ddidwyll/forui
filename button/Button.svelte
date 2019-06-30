@@ -87,7 +87,7 @@
     box-shadow: inset 0 0 0 1px var(--trans-bg);
   }
   button:disabled {
-    opacity: 0.6;
+    opacity: 0.4;
     cursor: not-allowed;
   }
   button > :global(svg) {
