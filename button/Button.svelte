@@ -9,7 +9,8 @@
   class:inverse
   class:danger
   class:flat
-  class:icon>
+  class:icon
+  class:clean>
   <slot />
 </button>
 
@@ -23,6 +24,7 @@
   export let danger = false
   export let flat = false
   export let icon = false
+  export let clean = false
 </script>
 
 <style>
@@ -100,5 +102,8 @@
   }
   button.icon {
     padding: calc(var(--padding-xsmall) * 0.55) var(--padding-xsmall);
+  }
+  button.clean:not(.active) {
+    border-color: transparent;
   }
 </style>
