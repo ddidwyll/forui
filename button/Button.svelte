@@ -29,18 +29,20 @@
 
 <style>
   button {
-    height: 40px;
+    height: var(--button-height);
     font-size: var(--button-font-size);
     text-transform: var(--button-case);
-    color: var(--primary-txt);
+    color: var(--button-txt);
     background-color: var(--button-bg);
     border: var(--button-border);
     border-radius: var(--button-border-radius);
     padding: var(--padding-xsmall) var(--padding-small);
     outline: none;
-    font-weight: var(--font-weight-bolder);
+    font-weight: var(--font-weight);
     box-shadow: var(--button-shadow);
+    text-shadow: 0 0 0 var(--dark-bg);
     vertical-align: middle;
+    letter-spacing: 0.6px;
   }
   button:hover:not(:disabled) {
     opacity: 0.8;
@@ -93,7 +95,7 @@
     cursor: not-allowed;
   }
   button > :global(svg) {
-    fill: var(--primary-txt);
+    fill: var(--button-txt);
     max-height: 24px;
     max-width: 24px;
   }

@@ -28,6 +28,7 @@ body {
 
 body > main {
   flex-grow: 1;
+  overflow: hidden;
 }
 
 main,
@@ -80,6 +81,10 @@ sup {
 
 img {
   border-style: none;
+}
+
+pre {
+  margin: 0;
 }
 
 button,
@@ -198,12 +203,12 @@ template {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #baafaf;
+  background: var(--dark-bg);
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #777;
+  background: var(--primary-txt);
 }
 
 hr {

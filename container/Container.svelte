@@ -27,7 +27,7 @@
   div.scrolly {
     overflow-y: auto;
     overflow-y: overlay;
-    padding-left: var(--padding-container);
-    padding-right: var(--padding-container);
+    padding-left: var(--padding-container-large);
+    padding-right: var(--padding-container-large);
   }
 </style>

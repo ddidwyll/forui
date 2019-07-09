@@ -9,11 +9,11 @@
   /* saturation full grayscale */
   --sfg: 0%;
   /* saturation grayscale */
-  --sg: 13%;
+  --sg: 10%;
   /* saturation semi grayscale */
-  --ssg: 35%;
+  --ssg: 20%;
   /* saturation semi colore */
-  --ssc: 50%;
+  --ssc: 40%;
   /* saturation colore */
   --sc: 80%;
   /* saturation full colore */
@@ -24,11 +24,11 @@
   /* lightness dark */
   --ld: 25%;
   /* lightness semi dark */
-  --lsd: 47%;
+  --lsd: 37%;
   /* lightness middle */
   --lm: 80%;
   /* lightness semi light */
-  --lsl: 90%;
+  --lsl: 86%;
   /* lightness light */
   --ll: 97%;
   /* lightness full light */
@@ -47,15 +47,17 @@
   --primary-txt: hsl(var(--hp), var(--sg), var(--lsd));
   --secondary-txt: hsl(var(--hs), var(--sg), var(--lsd));
   --white-txt: hsl(0, 0%, var(--lfl));
+  --button-txt: hsl(var(--hp), var(--ssg), var(--lsd));
   --light-bg: hsl(var(--hp), var(--ssg), var(--ll));
+  --dark-bg: hsla(var(--hp), var(--sg), var(--lsd), 0.6);
   --trans-bg: hsla(var(--hp), var(--ssg), var(--ll), 0.8);
+  --white-bg: hsl(0, 0%, var(--lfl));
   --button-bg: hsl(var(--hp), var(--ssg), var(--lfl));
   --button-bg-inverse: hsl(var(--hp), var(--sg), var(--lsd));
   --button-bg-inverse-success: hsl(var(--hs), var(--sc), var(--lsd));
   --button-bg-inverse-danger: hsl(var(--ht), var(--sc), var(--lsd));
   --button-bg-success: hsl(var(--hs), var(--sc), var(--lsl));
   --button-bg-danger: hsl(var(--ht), var(--sc), var(--lsl));
-  --white-bg: hsl(0, 0%, var(--lfl));
   --border-color: hsl(var(--hp), var(--sg), var(--lsl));
   --border-dark-color: hsl(var(--hp), var(--sfg), var(--lm));
   --shadow-color: hsl(var(--hp), var(--sg), var(--lsl));
@@ -66,7 +68,7 @@
   --line-height: 1.5;
   --h1-size: 1.55rem;
   --h1-line-size: 2;
-  --button-font-size: 0.65rem;
+  --button-font-size: 0.64rem;
 
   /* font weights */
   --font-weight: 400;
@@ -87,17 +89,19 @@
   --button-border-radius: var(--radius-xsmall);
 
   /* margins */
-  --margin-xsmall: 0.7rem;
-  --margin-small: 1.2rem;
+  --margin-xsmall: 0.6rem;
+  --margin-small: 1rem;
   --margin-container: 2vw;
+  --margin-container-large: 3vw;
 
   /* paddings */
-  --padding-xsmall: 0.7rem;
-  --padding-small: 1.2rem;
+  --padding-xsmall: 0.6rem;
+  --padding-small: 1rem;
   --padding-container: 2vw;
+  --padding-container-large: 3vw;
 
   /* transitions */
-  --transition: all 0.1s ease-in;
+  --transition: all 0.12s ease-out;
 
   /* container */
   --container-width: 90%;
@@ -109,4 +113,8 @@
 
   /* button */
   --button-case: uppercase;
+  --button-height: 2.4rem;
+
+  /* input */
+  --input-font-size: 0.82rem;
 }
