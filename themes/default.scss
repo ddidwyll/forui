@@ -1,184 +1,89 @@
-:root {
- /* hue primary */
- --hp: 180;
- /* hue secondary */
- --hs: calc(var(--hp) - 50);
- /* hue tertiary */
- --ht: calc(var(--hp) + 200);
-}
-
-@function c($h, $s, $l, $o: 1) {
-  @return hsla($h, $s, $l, $o);
-}
-
-@function cp($s, $l, $o: 1) {
-  @return c(v(hp), $s, $l, $o);
-}
-
-@function cs($s, $l, $o: 1) {
-  @return c(v(hs), $s, $l, $o);
-}
-
-@function ct($s, $l, $o: 1) {
-  @return c(v(ht), $s, $l, $o);
-}
-
-$colors: (
-  text: cp(20%, 30%),
-  background: #333,
-  primary: (
-    base: #FFBB00,
-    light: lighten(#FFBB00, 15%),
-    dark: darken(#FFBB00, 15%)
+$elements: (
+  primary: 180,
+  hp: var(--primary),
+  secondary: -50,
+  hs: calc(var(--hp) + var(--secondary)),
+  tertiary: 200,
+  ht: calc(var(--hp) + var(--tertiary)),
+  all: (
+    transition: (
+      base: all 0.12s ease-out
+    )
   ),
-  secondary: (
-    base: #0969A2,
-    light: lighten(#0969A2, 15%),
-    dark: darken(#0969A2, 15%)
+  scrollbar: (
+    background: (
+      base: cp(10%, 77%),
+      hover: cp(10%, 55%)
+    ),
+    size: 5px,
+    radius: 2px
+  ),
+  body: (
+    color: (
+      base: cp(10%, 37%)
+    ),
+    background-color: (
+      light: cp(18%, 97%),
+      white: cp(0%, 100%)
+    ),
+    background-image: (
+      url('/noise.png')
+    ),
+    font-family: "Roboto, -apple-system, BlinkMacSystemFont,
+      'Segoe UI', Oxygen-Sans, Ubuntu, Cantarell,
+      'Helvetica Neue', sans-serif",
+    font-size: (
+      base: 1rem,
+      small: 0.64rem
+    ),
+    font-weight: (
+      base: 400,
+      bold: 500
+    ),
+    line-height: (
+      base: 1.5
+    )
+  ),
+  h: (
+    font-size: (
+      h1: 1.5rem
+    ),
+    font-weight: (
+      base: v(body, font-weight, base)
+    ),
+    line-height: (
+      base: v(body, line-height, base)
+    )
   )
 );
 
-// size variable map in Sass
-$sizes: (
-  gutter: 30px,
-  spacer: 15px,
-  container: (sm: 750px, md: 970px, lg: 1170px ),
-  viewport:  (sm: 768px, md: 992px, lg: 1200px )
-);
-
-// variable prefixes for CSS4 output
-$color-prefix: --color-;
-$size-prefix: --size-;
-
-@function color($color-name, $color-variant:null) {
-  
-  // color variant is optional
-  @if ($color-variant != null) {
-    // map inception, need two names
-    @return var(#{$color-prefix}#{$color-name}-#{$color-variant});
-
-  } @else {
-    // single-level color, one name
-    @return var(#{$color-prefix}#{$color-name});
-
-  }
-}
-
-// retrieve size from map with Sass ie. `size(viewport, sm)`
-@function size($size-name, $size-variant:null, $true-val:false) {
-  
-  // size variant is optional
-  @if ($size-variant != null) {
-    // map inception, need two names
-    @return var(#{$size-prefix}#{$size-name}-#{$size-variant});
-
-  } @else {
-    // single-level size, one name
-    @return var(#{$size-prefix}#{$size-name});
-
-  }
-}
-
-// define local variable
-@mixin var($name,$value) {
-  #{--$name}: $value;
-}
-// access any variable
-@function v($name) {
-  @return var(--#{$name});
-}
-
-/* ripped CSS4 vars out of color map */
 :root {
-  
-  // each item in color map
-  @each $name, $color in $colors {
-    
-    // maps require a second loop
-    @if type-of($color) == "map" {
-      
-      // each item in sub map
-      @each $subname, $subcolor in $color {  
-        // --color-primary-base
-        #{$color-prefix}#{$name}-#{$subname}: $subcolor;
+  @each $elem, $props in $elements { 
+    @if type-of($props) == "map" {
+      @each $prop, $value in $props {
+        @if type-of($value) == "map" {
+          @each $var, $val in $value {
+            @if type-of($val) == "map" {
+              @each $st, $v in $val {
+                --#{$elem}-#{$prop}-#{$var}-#{$st}: #{$v};
+              }
+            }
+            @else {
+              --#{$elem}-#{$prop}-#{$var}: #{$val};
+            }
+          }
+        }
+        @else {
+          --#{$elem}-#{$prop}: #{$value};
+        }
       }
-    
-    // normal colors
-    } @elseif type-of($color) == "color" {
-      
-      // --color-background
-      #{$color-prefix}#{$name}: $color;
-      
-    }
-  }
-
-  // each item in size map
-  @each $name, $size in $sizes {
-    
-    // maps require a second loop
-    @if type-of($size) == "map" {
-      
-      // each item in sub map
-      @each $subname, $subsize in $size {  
-        // --size-viewport-md
-        #{$size-prefix}#{$name}-#{$subname}: $subsize;
-      }
-    
-    // normal sizes
-    } @elseif type-of($size) == "number" {
-      
-      // --size-background
-      #{$size-prefix}#{$name}: $size;
-      
+    } 
+    @else {
+      --#{$elem}: #{$props};
     }
   }
 }
-
-/* 
- * referencing our color variables with CSS 
-body {
-  // right here it's Sass tho
-  color: color(primary, base);
-  background-color: color(background);
-  @include var(
-    new-primary, 
-    darken(
-      color(primary,base,true), 
-      5%
-    )
-  );
-  color: v(new-primary);
-}
- */
-
-
-/* 
- * referencing a top-level size variable with CSS via Sass @function 
- */
-.container { margin: size(spacer) auto; }
-
-
-/* 
- * referencing our nested size variables with CSS via Sass @each loop 
- */
-@each $name, $size in map-get($sizes,viewport) {
-  @media (min-width: size(viewport, $name)) {
-    /* viewport min-width: #{size(viewport, $name, true)} */
-    .container { 
-      /* container width: #{size(container, $name, true)} */
-      width: size(container, $name); 
-    }
-  }
-}
-
-/*:root {
-//  /* hue primary */
-//  --hp: 180;
-//  /* hue secondary */
-//  --hs: calc(var(--hp) - 50);
-//  /* hue tertiary */
-//  --ht: calc(var(--hp) + 200);
-//
+//:root {
 //  /* saturation full grayscale */
 //  --sfg: 0%;
 //  /* saturation grayscale */
@@ -217,24 +122,24 @@ body {
 //  --at: 0;
 //
 //  /* colors */
-//  --primary-txt: hsl(var(--hp), var(--sg), var(--lsd));
-//  --secondary-txt: hsl(var(--hs), var(--sg), var(--lsd));
-//  --white-txt: hsl(0, 0%, var(--lfl));
-//  --button-txt: hsl(var(--hp), var(--ssg), var(--lsd));
-//  --light-bg: hsl(var(--hp), var(--ssg), var(--ll));
-//  --dark-bg: hsla(var(--hp), var(--sg), var(--lsd), 0.6);
-//  --trans-bg: hsla(var(--hp), var(--ssg), var(--ll), 0.8);
-//  --white-bg: hsl(0, 0%, var(--lfl));
-//  --button-bg: hsl(var(--hp), var(--ssg), var(--lfl));
-//  --button-bg-inverse: hsl(var(--hp), var(--sg), var(--lsd));
-//  --button-bg-inverse-success: hsl(var(--hs), var(--sc), var(--lsd));
-//  --button-bg-inverse-danger: hsl(var(--ht), var(--sc), var(--lsd));
-//  --button-bg-success: hsl(var(--hs), var(--sc), var(--lsl));
-//  --button-bg-danger: hsl(var(--ht), var(--sc), var(--lsl));
-//  --border-color: hsl(var(--hp), var(--sg), var(--lsl));
-//  --border-dark-color: hsl(var(--hp), var(--sfg), var(--lm));
-//  --shadow-color: hsl(var(--hp), var(--sg), var(--lsl));
-//  --shadow-trans-color: hsla(var(--hp), var(--sfg), var(--ld), 0.1);
+//  --primary-txt: hsl(var(--hp), 10%, 37%);
+//  --secondary-txt: hsl(var(--hs), 10%, 37%);
+//  --white-txt: hsl(0, 0%, 99.5);
+//  --button-txt: hsl(var(--hp), 20%, 37%);
+//  --light-bg: hsl(var(--hp), 20%, 97%);
+//  --dark-bg: hsla(var(--hp), 10%, 37%, 0.6);
+//  --trans-bg: hsla(var(--hp), 20%, 97%, 0.8);
+//  --white-bg: hsl(0, 0%, 99.5);
+//  --button-bg: hsl(var(--hp), 20%, 99.5);
+//  --button-bg-inverse: hsl(var(--hp), 10%, 37%);
+//  --button-bg-inverse-success: hsl(var(--hs), 80%, 37%);
+//  --button-bg-inverse-danger: hsl(var(--ht), 80%, 37%);
+//  --button-bg-success: hsl(var(--hs), 80%, 86%);
+//  --button-bg-danger: hsl(var(--ht), 80%, 86%);
+//  --border-color: hsl(var(--hp), 10%, 86%);
+//  --border-dark-color: hsl(var(--hp), 0%, 80%);
+//  --shadow-color: hsl(var(--hp), 10%, 86%);
+//  --shadow-trans-color: hsla(var(--hp), 0%, 25%, 0.1);
 //
 //  /* text sizes */
 //  --font-size: 100%;

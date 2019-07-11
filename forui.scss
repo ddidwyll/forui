@@ -1,0 +1,250 @@
+@function c($h, $s, $l, $o: 1) {
+  @return hsla($h, $s, $l, $o);
+}
+
+@function cp($s, $l, $o: 1) {
+  @return c(var(--hp), $s, $l, $o);
+}
+
+@function cs($s, $l, $o: 1) {
+  @return c(var(--hs), $s, $l, $o);
+}
+
+@function ct($s, $l, $o: 1) {
+  @return c(var(--ht), $s, $l, $o);
+}
+
+@function v($elem, $prop:null, $variant:null, $state: null) {
+  @if ($prop == null) {
+    @return var(--#{$elem});
+  }
+  @elseif ($variant == null) {
+    @return var(--#{$elem}-#{$prop});
+  }
+  @elseif ($state == null) {
+    @return var(--#{$elem}-#{$prop}-#{$variant});
+  }
+  @else {
+    @return var(--#{$elem}-#{$prop}-#{$variant}-#{$state});
+  }
+}
+
+@mixin v($prop, $elem, $variant:null, $state:null) {
+  #{$prop}: #{v($elem, $prop, $variant, $state)};
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  cursor: default;
+  color: v(body, color, base);
+  background-color: v(body, background-color, light);
+  background-image: v(body, background-image);
+  font-family: v(body, font-family);
+  font-size: v(body, font-size, base);
+  font-weight: v(body, font-weight, base);
+  line-height: v(body, line-height, base);
+}
+
+body > main {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+main,
+header,
+nav,
+aside,
+footer {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+h1 {
+  font-size: v(h, font-size, h1);
+  font-weight: v(h, font-weight, base);
+  line-height: v(h, line-height, base);
+}
+
+a {
+  background-color: transparent;
+  text-decoration: none;
+}
+
+b,
+strong {
+  font-weight: v(body, font-weight, bold);
+}
+
+small {
+  font-size: v(body, font-size, small);
+}
+
+sub,
+sup {
+  font-size: v(body, font-size, small);
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+img {
+  border-style: none;
+}
+
+pre,
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: v(body, font-size, base);
+  line-height: v(body, line-height, base);
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+[type='reset'],
+[type='button'],
+[type='submit'] {
+  -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring,
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
+  outline: 0;
+}
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+textarea {
+  overflow: auto;
+}
+
+[type='checkbox'],
+[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+.hidden,
+template,
+[hidden] {
+  display: none !important;
+}
+
+::-webkit-scrollbar,
+::-scrollbar {
+  width: v(scrollbar, size);
+  height: v(scrollbar, size);
+}
+
+::-webkit-scrollbar-track,
+::-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb,
+::-scrollbar-thumb {
+  transition: v(all, transition, base);
+  background: v(scrollbar, background, base);
+  border-radius: v(scrollbar, radius);
+}
+
+::-webkit-scrollbar-thumb:hover,
+::-scrollbar-thumb:hover {
+  background: v(scrollbar, background, hover);
+}
+
+* {
+  transition: v(all, transition, base);
+  scrollbar-color: v(scrollbar, background, base);
+  scrollbar-width: v(scrollbar, size);
+}
+
+hr {
+  flex-grow: 5;
+  visibility: hidden;
+}

@@ -27,12 +27,13 @@
   export let clean = false
 </script>
 
-<style>
+<style type="scss">
   button {
     height: var(--button-height);
     font-size: var(--button-font-size);
     text-transform: var(--button-case);
     color: var(--button-txt);
+    @include v(color, body, primary, default);
     background-color: var(--button-bg);
     border: var(--button-border);
     border-radius: var(--button-border-radius);
