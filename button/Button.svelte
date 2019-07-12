@@ -27,28 +27,28 @@
   export let clean = false
 </script>
 
-<style type="scss">
+<style>
   button {
-    height: var(--button-height);
-    font-size: var(--button-font-size);
-    text-transform: var(--button-case);
-    color: var(--button-txt);
-    @include v(color, body, primary, default);
-    background-color: var(--button-bg);
+    height: var(--button-height-base);
+    font-size: var(--button-font-size-base);
+    text-transform: var(--button-text-transform);
+    color: var(--button-color-primary-base);
+    background-color: var(--button-background-color-primary-base);
     border: var(--button-border);
+    border-color: var(--button-border-color-primary-base);
     border-radius: var(--button-border-radius);
-    padding: var(--padding-xsmall) var(--padding-small);
+    padding: 0 0.8rem;
     outline: none;
     font-weight: var(--font-weight);
     box-shadow: var(--button-shadow);
     text-shadow: 0 0 0 var(--dark-bg);
     vertical-align: middle;
-    letter-spacing: 0.6px;
+    letter-spacing: 1px;
   }
   button:hover:not(:disabled) {
     opacity: 0.8;
     box-shadow: none;
-    transform: translateY(1px);
+    border-color: transparent;
   }
   button.active {
     pointer-events: none;

@@ -9,8 +9,11 @@
 </script>
 
 <style>
+  main {
+    padding: var(--container-padding-x) 0 0;
+  }
   main > :global(div) {
-    box-shadow: var(--shadow-large);
-    border: var(--default-border);
+    box-shadow: var(--container-shadow);
+    border: var(--container-border);
   }
 </style>

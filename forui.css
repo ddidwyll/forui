@@ -1,38 +1,3 @@
-@function c($h, $s, $l, $o: 1) {
-  @return hsla($h, $s, $l, $o);
-}
-
-@function cp($s, $l, $o: 1) {
-  @return c(var(--hp), $s, $l, $o);
-}
-
-@function cs($s, $l, $o: 1) {
-  @return c(var(--hs), $s, $l, $o);
-}
-
-@function ct($s, $l, $o: 1) {
-  @return c(var(--ht), $s, $l, $o);
-}
-
-@function v($elem, $prop:null, $variant:null, $state: null) {
-  @if ($prop == null) {
-    @return var(--#{$elem});
-  }
-  @elseif ($variant == null) {
-    @return var(--#{$elem}-#{$prop});
-  }
-  @elseif ($state == null) {
-    @return var(--#{$elem}-#{$prop}-#{$variant});
-  }
-  @else {
-    @return var(--#{$elem}-#{$prop}-#{$variant}-#{$state});
-  }
-}
-
-@mixin v($prop, $elem, $variant:null, $state:null) {
-  #{$prop}: #{v($elem, $prop, $variant, $state)};
-}
-
 html,
 body {
   display: flex;
@@ -46,13 +11,13 @@ body {
   padding: 0;
   overflow: hidden;
   cursor: default;
-  color: v(body, color, base);
-  background-color: v(body, background-color, light);
-  background-image: v(body, background-image);
-  font-family: v(body, font-family);
-  font-size: v(body, font-size, base);
-  font-weight: v(body, font-weight, base);
-  line-height: v(body, line-height, base);
+  color: var(--common-color-base);
+  background-color: var(--common-background-color-light);
+  background-image: var(--common-background-image);
+  font-family: var(--common-font-family);
+  font-size: var(--common-font-size-base);
+  font-weight: var(--common-font-weight-base);
+  line-height: var(--common-line-height-base);
 }
 
 body > main {
@@ -76,9 +41,9 @@ h4 {
 }
 
 h1 {
-  font-size: v(h, font-size, h1);
-  font-weight: v(h, font-weight, base);
-  line-height: v(h, line-height, base);
+  font-size: var(--h-font-size-h1);
+  font-weight: var(--h-font-weight-base);
+  line-height: var(--h-line-height-base);
 }
 
 a {
@@ -88,16 +53,16 @@ a {
 
 b,
 strong {
-  font-weight: v(body, font-weight, bold);
+  font-weight: var(--common-font-weight-bold);
 }
 
 small {
-  font-size: v(body, font-size, small);
+  font-size: var(--common-font-size-small);
 }
 
 sub,
 sup {
-  font-size: v(body, font-size, small);
+  font-size: var(--common-font-size-small);
   line-height: 0;
   position: relative;
   vertical-align: baseline;
@@ -115,6 +80,10 @@ img {
   border-style: none;
 }
 
+svg {
+  fill: var(--common-color-primary-base);
+}
+
 pre,
 button,
 input,
@@ -124,8 +93,8 @@ textarea {
   margin: 0;
   cursor: pointer;
   font-family: inherit;
-  font-size: v(body, font-size, base);
-  line-height: v(body, line-height, base);
+  font-size: var(--common-font-size-base);
+  line-height: var(--common-line-height-base);
 }
 
 button,
@@ -215,33 +184,29 @@ template,
   display: none !important;
 }
 
-::-webkit-scrollbar,
-::-scrollbar {
-  width: v(scrollbar, size);
-  height: v(scrollbar, size);
+::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
 }
 
-::-webkit-scrollbar-track,
-::-scrollbar-track {
+::-webkit-scrollbar-track {
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb,
-::-scrollbar-thumb {
-  transition: v(all, transition, base);
-  background: v(scrollbar, background, base);
-  border-radius: v(scrollbar, radius);
+::-webkit-scrollbar-thumb {
+  transition: var(--all-transition-base);
+  background: var(--scrollbar-background-base);
+  border-radius: var(--scrollbar-radius);
 }
 
-::-webkit-scrollbar-thumb:hover,
-::-scrollbar-thumb:hover {
-  background: v(scrollbar, background, hover);
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-background-hover);
 }
 
 * {
-  transition: v(all, transition, base);
-  scrollbar-color: v(scrollbar, background, base);
-  scrollbar-width: v(scrollbar, size);
+  transition: var(--all-transition-base);
+  scrollbar-color: var(--scrollbar-background-base);
+  scrollbar-width: var(--scrollbar-size);
 }
 
 hr {

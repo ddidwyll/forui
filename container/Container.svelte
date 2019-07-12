@@ -9,25 +9,30 @@
 
 <style>
   div {
-    width: var(--container-width);
-    max-width: var(--container-max-width);
     box-sizing: border-box;
+    width: var(--container-width-base);
+    max-width: var(--container-max-width);
     height: 100%;
     max-height: 100%;
-    background-color: var(--white-bg);
+    background-color: var(--common-background-color-white);
     overflow: hidden;
     margin: 0 auto;
   }
   div.scrollx {
     overflow-x: auto;
     overflow-x: overlay;
-    padding-top: var(--padding-container);
-    padding-bottom: var(--padding-container);
+    padding-top: var(--container-padding-x);
+    padding-bottom: var(--container-padding-x);
   }
   div.scrolly {
     overflow-y: auto;
     overflow-y: overlay;
-    padding-left: var(--padding-container-large);
-    padding-right: var(--padding-container-large);
+    padding-left: var(--container-padding-y);
+    padding-right: var(--container-padding-y);
+  }
+  @media screen and (max-width: 900px) {
+    div {
+      width: var(--container-width-small);
+    }
   }
 </style>

@@ -12,14 +12,14 @@
 
 <style>
   header {
-    width: var(--header-width);
+    width: var(--header-width-base);
+    height: var(--header-height-base);
+    min-height: var(--header-height-base);
+    max-height: var(--header-height-base);
     margin: 0 auto;
-    height: var(--header-height);
-    max-height: var(--header-height);
-    background-color: var(--white-bg);
-    border-bottom: var(--default-border);
-    box-shadow: var(--shadow-large);
-    margin-bottom: var(--margin-container);
+    background-color: var(--common-background-color-white);
+    border-bottom: var(--container-border);
+    box-shadow: var(--container-shadow);
   }
   header > :global(div) {
     display: flex;
@@ -38,5 +38,11 @@
   }
   header > :global(div > :not(:last-child):not(:first-child)) {
     text-align: center;
+  }
+  @media screen and (max-width: 900px) {
+    header {
+      box-sizing: border-box;
+      padding: 0 var(--container-padding-y);
+    }
   }
 </style>
