@@ -14,7 +14,7 @@
   @return c(var(--ht), $s, $l, $o);
 }
 
-@function v($elem, $prop:null, $variant:null, $state: null) {
+@function v($elem, $prop: null, $variant: null, $state: null) {
   @if ($prop == null) {
     @return var(--#{$elem});
   }
@@ -23,13 +23,12 @@
   }
   @elseif ($state == null) {
     @return var(--#{$elem}-#{$prop}-#{$variant});
-  }
-  @else {
+  } @else {
     @return var(--#{$elem}-#{$prop}-#{$variant}-#{$state});
   }
 }
 
-@mixin v($prop, $elem, $variant:null, $state:null) {
+@mixin v($prop, $elem, $variant: null, $state: null) {
   #{$prop}: #{v($elem, $prop, $variant, $state)};
 }
 
@@ -41,6 +40,35 @@ $elements: (
   tertiary: 200,
   ht: calc(var(--hp) + var(--tertiary)),
   common: (
+    color: (
+      base: cp(20%, 40%),
+      light: cp(10%, 55%),
+      white: #fff
+    ),
+    font-size: (
+      base: 1rem,
+      small: 0.7rem
+    ),
+    font-weight: (
+      base: 400,
+      bold: 500
+    ),
+    line-height: (
+      base: 1.5
+    ),
+    background-color: (
+      light: cp(18%, 97%),
+      lighten: cp(10%, 98.5%),
+      white: cp(0%, 99.5%),
+      dark: cp(15%, 43%),
+      tertiary: ct(50%, 96.5%),
+      secondary: cs(60%, 95.5%)
+    ),
+    background-image: url('/noise.png'),
+    font-family:
+      "Roboto, -apple-system, BlinkMacSystemFont,
+      'Segoe UI', Oxygen-Sans, Ubuntu, Cantarell,
+      'Helvetica Neue', sans-serif",
     margin: (
       base: 4vmin,
       large: 6vmin,
@@ -52,42 +80,23 @@ $elements: (
       small: 3vmin
     ),
     border: (
-      base: 1px solid,
+      base: 1px solid
     ),
     border-color: (
-      base: cp(10%, 91%)
+      base: cp(10%, 88%)
     ),
     shadow: (
-      large: 0 0 1rem 2px,
-      small: 0 0 3px 1px,
+      large: 0 0 1rem 0,
+      inset: inset 0 0 3px 0,
+      inverse: inset 0 0 8px 0px,
+      small: 0 0 2px 0,
       color: (
-        base: v(common, border-color, base)
+        base: cp(10%, 88%),
+        dark: cp(10%, 27%)
       )
     ),
     transition: (
-      base: all 0.12s ease-out
-    ),
-    color: (
-      base: cp(10%, 38%)
-    ),
-    background-color: (
-      light: cp(18%, 97%),
-      white: cp(0%, 99.5%)
-    ),
-    background-image: url('/noise.png'),
-    font-family: "Roboto, -apple-system, BlinkMacSystemFont,
-      'Segoe UI', Oxygen-Sans, Ubuntu, Cantarell,
-      'Helvetica Neue', sans-serif",
-    font-size: (
-      base: 1rem,
-      small: 0.64rem
-    ),
-    font-weight: (
-      base: 400,
-      bold: 500
-    ),
-    line-height: (
-      base: 1.5
+      base: all 0.28s ease-out
     )
   ),
   scrollbar: (
@@ -116,7 +125,7 @@ $elements: (
       base: 100%
     ),
     height: (
-      base: 64px
+      base: 65px
     )
   ),
   h: (
@@ -132,70 +141,118 @@ $elements: (
   ),
   control: (
     height: (
-      base: 40px,
+      base: 39px,
       small: 25px,
       large: 55px
+    ),
+    padding: (
+      base: 0 0.77rem
+    ),
+    line-height: (
+      base: calc(var(--control-height-base) - 1px),
+      small: calc(var(--control-height-small) - 1px),
+      large: calc(var(--control-height-large) - 1px)
     ),
     border: v(common, border, base),
     border-color: (
       primary: (
         base: v(common, border-color, base)
+      ),
+      secondary: (
+        base: cs(80%, 80%)
+      ),
+      tertiary: (
+        base: ct(90%, 86%)
       )
     ),
-    border-radius: 2px,
+    border-radius: 2px
   ),
   button: (
     color: (
       primary: (
-        base: v(common, color, primary, base)
+        base: v(common, color, base),
+        light: v(common, color, light)
       )
     ),
-    background-color: (
-      primary: (
-        base: v(common, background-color, light)
-      )
-    ),
-    border: v(control, border),
-    border-color: (
-      primary: (
-        base: v(control, border-color, primary, base)
-      )
-    ),
-    border-radius: v(control, border-radius),
     font-size: (
       base: v(common, font-size, small)
+    ),
+    font-weight: (
+      base: v(common, font-weight, bold)
     ),
     height: (
       base: v(control, height, base),
       small: v(control, height, small),
       large: v(control, height, large)
     ),
+    line-height: (
+      base: v(control, line-height, base),
+      small: v(control, line-height, small),
+      large: v(control, line-height, large)
+    ),
     text-transform: uppercase,
+    letter-spacing: 1px,
+    background-color: (
+      primary: (
+        base: v(common, background-color, lighten),
+        inverse: v(common, background-color, dark)
+      ),
+      secondary: (
+        base: v(common, background-color, secondary),
+        inverse: cs(40%, 55%)
+      ),
+      tertiary: (
+        base: v(common, background-color, tertiary),
+        inverse: ct(40%, 60%)
+      )
+    ),
+    border: v(control, border),
+    border-color: (
+      primary: (
+        base: v(control, border-color, primary, base)
+      ),
+      tertiary: (
+        base: v(control, border-color, tertiary, base)
+      ),
+      secondary: (
+        base: v(control, border-color, secondary, base)
+      )
+    ),
+    border-radius: v(control, border-radius),
+    shadow: (
+      inset: v(common, shadow, inset),
+      inverse: v(common, shadow, inverse),
+      base: v(common, shadow, small),
+      flat: none
+    ),
+    shadow-color: (
+      primary: (
+        base: v(common, shadow, color, base),
+        dark: v(common, shadow, color, dark)
+      )
+    )
   )
 );
 
 :root {
-  @each $elem, $props in $elements { 
-    @if type-of($props) == "map" {
+  @each $elem, $props in $elements {
+    @if type-of($props) == 'map' {
       @each $prop, $value in $props {
-        @if type-of($value) == "map" {
+        @if type-of($value) == 'map' {
           @each $var, $val in $value {
-            @if type-of($val) == "map" {
+            @if type-of($val) == 'map' {
               @each $st, $v in $val {
                 --#{$elem}-#{$prop}-#{$var}-#{$st}: #{$v};
               }
-            }
-            @else {
+            } @else {
               --#{$elem}-#{$prop}-#{$var}: #{$val};
             }
           }
-        }
-        @else {
+        } @else {
           --#{$elem}-#{$prop}: #{$value};
         }
       }
-    } 
-    @else {
+    } @else {
       --#{$elem}: #{$props};
     }
   }

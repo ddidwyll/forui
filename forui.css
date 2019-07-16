@@ -81,7 +81,7 @@ img {
 }
 
 svg {
-  fill: var(--common-color-primary-base);
+  fill: var(--common-color-base);
 }
 
 pre,

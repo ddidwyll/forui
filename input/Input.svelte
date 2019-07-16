@@ -39,10 +39,10 @@
       case 'date':
         return +value > 0
           ? new Date(+value)
-              .toLocaleDateString('en-GB')
-              .split('/')
-              .reverse()
-              .join('-')
+            .toLocaleDateString('en-GB')
+            .split('/')
+            .reverse()
+            .join('-')
           : ''
       case 'number':
         return +value || null

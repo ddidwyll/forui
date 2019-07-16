@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.html,.svelte .",
     "fix": "eslint --fix --ext .js,.html,.svelte .",
-    "format": "prettier --write --svelte-sort-order markup-scripts-styles --svelte-strict-mode true --plugin-search-dir=. **/*.svelte; prettier --write **/*.js; prettier --write **/*.css"
+    "format": "prettier --write --svelte-sort-order markup-scripts-styles --plugin-search-dir=. **/*.svelte; prettier --write **/*.js; prettier --write **/*.*css"
   },
   "repository": {
     "type": "git",

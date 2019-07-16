@@ -8,105 +8,108 @@
   class:success
   class:inverse
   class:danger
-  class:flat
-  class:icon
   class:clean>
-  <slot />
+  <slot>{label}</slot>
 </button>
 
 <script>
-  export let label = ''
+  export let label = null
   export let disabled = false
   export let hidden = false
   export let active = false
   export let success = false
   export let inverse = false
   export let danger = false
-  export let flat = false
-  export let icon = false
   export let clean = false
 </script>
 
 <style>
   button {
+    display: inline-flex;
+    align-items: center;
     height: var(--button-height-base);
+    padding: var(--control-padding-base);
     font-size: var(--button-font-size-base);
+    font-weight: var(--button-font-weight-base);
+    line-height: var(--control-line-height-base);
     text-transform: var(--button-text-transform);
+    letter-spacing: var(--button-letter-spacing);
     color: var(--button-color-primary-base);
     background-color: var(--button-background-color-primary-base);
     border: var(--button-border);
     border-color: var(--button-border-color-primary-base);
     border-radius: var(--button-border-radius);
-    padding: 0 0.8rem;
+    box-shadow: var(--button-shadow-base)
+      var(--button-shadow-color-primary-base);
     outline: none;
-    font-weight: var(--font-weight);
-    box-shadow: var(--button-shadow);
-    text-shadow: 0 0 0 var(--dark-bg);
     vertical-align: middle;
-    letter-spacing: 1px;
-  }
-  button:hover:not(:disabled) {
-    opacity: 0.8;
-    box-shadow: none;
-    border-color: transparent;
-  }
-  button.active {
-    pointer-events: none;
-    border-color: var(--shadow-trans-color);
-    box-shadow: inset 0 0 5px 0 var(--shadow-trans-color);
-  }
-  button.inverse {
-    background-color: var(--button-bg-inverse);
-  }
-  button.inverse.success {
-    background-color: var(--button-bg-inverse-success);
-  }
-  button.inverse.danger {
-    background-color: var(--button-bg-inverse-danger);
-  }
-  button.success {
-    background-color: var(--button-bg-success);
-  }
-  button.danger {
-    background-color: var(--button-bg-danger);
-  }
-  button.inverse {
-    border-color: var(--border-dark-color);
-    color: var(--white-txt);
-  }
-  button.flat:not(.active) {
-    box-shadow: none;
-  }
-  button.flat.success:not(.active) {
-    border-color: var(--button-bg-success);
-  }
-  button.flat.danger:not(.active) {
-    border-color: var(--button-bg-danger);
-  }
-  button.active {
-    pointer-events: none;
-    border-color: var(--shadow-trans-color);
-    box-shadow: inset 0 0 5px 0 var(--shadow-trans-color);
-  }
-  button.active.inverse {
-    box-shadow: inset 0 0 0 1px var(--trans-bg);
   }
   button:disabled {
-    opacity: 0.4;
+    opacity: 0.6;
     cursor: not-allowed;
   }
-  button > :global(svg) {
-    fill: var(--button-txt);
-    max-height: 24px;
-    max-width: 24px;
+  button:focus:not(.active) {
+    outline-offset: -4px;
+    outline: 1px dashed var(--button-border-color-primary-base);
+  }
+  button:hover:not(:disabled):not(.active) {
+    opacity: 0.8;
+    box-shadow: none;
+  }
+  button:active:not(.inverse):not(:disabled),
+  button.active:not(.inverse):not(:disabled) {
+    outline: none;
+    box-shadow: var(--button-shadow-inset)
+      var(--button-shadow-color-primary-base);
+    background-color: var(--common-background-color-white);
+    color: var(--button-color-primary-light);
+  }
+  button.active {
+    cursor: default;
+  }
+  button.danger {
+    border-color: var(--button-border-color-tertiary-base);
+    background-color: var(--button-background-color-tertiary-base);
+  }
+  button.success {
+    border-color: var(--button-border-color-secondary-base);
+    background-color: var(--button-background-color-secondary-base);
+  }
+  button.inverse {
+    background-color: var(--button-background-color-primary-inverse);
+    color: var(--common-color-white);
+    box-shadow: var(--button-shadow-base)
+      var(--button-shadow-color-primary-dark);
+    border-color: transparent;
   }
   button.inverse > :global(svg) {
-    fill: var(--white-txt);
+    fill: var(--common-color-white);
   }
-  button.icon {
-    padding: calc(var(--padding-xsmall) * 0.55) var(--padding-xsmall);
+  button.inverse:active:not(#hack):not(:disabled),
+  button.inverse.active:not(:disabled) {
+    background-color: var(--button-background-color-primary-inverse);
+    color: var(--common-color-white);
+    opacity: 0.7;
+    box-shadow: var(--button-shadow-inverse)
+      var(--button-shadow-color-primary-dark);
   }
-  button.clean:not(.active) {
+  button.success.inverse:active:not(#hack):not(:disabled),
+  button.success.inverse.active:not(:disabled),
+  button.inverse.success {
+    background-color: var(--button-background-color-secondary-inverse);
+  }
+  button.danger.inverse:active:not(#hack):not(:disabled),
+  button.danger.inverse.active:not(:disabled),
+  button.inverse.danger {
+    background-color: var(--button-background-color-tertiary-inverse);
+  }
+  button.clean {
     border-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
+    transform: none;
+  }
+  button.clean:hover:not(:disabled):not(.active) {
+    transform: translateY(1px);
   }
 </style>
