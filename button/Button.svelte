@@ -8,8 +8,11 @@
   class:success
   class:inverse
   class:danger
-  class:clean>
-  <slot>{label}</slot>
+  class:clean
+  class:large
+  class:small
+  class:block>
+  <slot>{label || ''}</slot>
 </button>
 
 <script>
@@ -21,6 +24,9 @@
   export let inverse = false
   export let danger = false
   export let clean = false
+  export let small = false
+  export let large = false
+  export let block = false
 </script>
 
 <style>
@@ -37,7 +43,7 @@
     color: var(--button-color-primary-base);
     background-color: var(--button-background-color-primary-base);
     border: var(--button-border);
-    border-color: var(--button-border-color-primary-base);
+    border-color: var(--button-border-color-primary);
     border-radius: var(--button-border-radius);
     box-shadow: var(--button-shadow-base)
       var(--button-shadow-color-primary-base);
@@ -50,7 +56,7 @@
   }
   button:focus:not(.active) {
     outline-offset: -4px;
-    outline: 1px dashed var(--button-border-color-primary-base);
+    outline: 1px dashed var(--button-border-color-primary);
   }
   button:hover:not(:disabled):not(.active) {
     opacity: 0.8;
@@ -68,11 +74,11 @@
     cursor: default;
   }
   button.danger {
-    border-color: var(--button-border-color-tertiary-base);
+    border-color: var(--button-border-color-tertiary);
     background-color: var(--button-background-color-tertiary-base);
   }
   button.success {
-    border-color: var(--button-border-color-secondary-base);
+    border-color: var(--button-border-color-secondary);
     background-color: var(--button-background-color-secondary-base);
   }
   button.inverse {
@@ -111,5 +117,21 @@
   }
   button.clean:hover:not(:disabled):not(.active) {
     transform: translateY(1px);
+  }
+  button.clean.active {
+    border-radius: 1rem;
+  }
+  button.small {
+    height: var(--button-height-small);
+    line-height: var(--button-line-height-small);
+    padding: var(--control-padding-small);
+  }
+  button.large {
+    height: var(--button-height-large);
+    line-height: var(--button-line-height-large);
+    padding: var(--control-padding-large);
+  }
+  button.block {
+    display: flex;
   }
 </style>

@@ -83,7 +83,8 @@ $elements: (
       base: 1px solid
     ),
     border-color: (
-      base: cp(10%, 88%)
+      base: cp(10%, 88%),
+      dark: cp(10%, 80%)
     ),
     shadow: (
       large: 0 0 1rem 0,
@@ -142,11 +143,13 @@ $elements: (
   control: (
     height: (
       base: 39px,
-      small: 25px,
-      large: 55px
+      small: 29px,
+      large: 50px
     ),
     padding: (
-      base: 0 0.77rem
+      base: 0 0.77rem,
+      small: 0 0.3rem,
+      large: 0 1.1rem
     ),
     line-height: (
       base: calc(var(--control-height-base) - 1px),
@@ -155,15 +158,9 @@ $elements: (
     ),
     border: v(common, border, base),
     border-color: (
-      primary: (
-        base: v(common, border-color, base)
-      ),
-      secondary: (
-        base: cs(80%, 80%)
-      ),
-      tertiary: (
-        base: ct(90%, 86%)
-      )
+      primary: v(common, border-color, base),
+      secondary: cs(70%, 75%),
+      tertiary: ct(80%, 81%)
     ),
     border-radius: 2px
   ),
@@ -208,22 +205,15 @@ $elements: (
     ),
     border: v(control, border),
     border-color: (
-      primary: (
-        base: v(control, border-color, primary, base)
-      ),
-      tertiary: (
-        base: v(control, border-color, tertiary, base)
-      ),
-      secondary: (
-        base: v(control, border-color, secondary, base)
-      )
+      primary: v(control, border-color, primary),
+      tertiary: v(control, border-color, tertiary),
+      secondary: v(control, border-color, secondary)
     ),
     border-radius: v(control, border-radius),
     shadow: (
-      inset: v(common, shadow, inset),
-      inverse: v(common, shadow, inverse),
       base: v(common, shadow, small),
-      flat: none
+      inset: v(common, shadow, inset),
+      inverse: v(common, shadow, inverse)
     ),
     shadow-color: (
       primary: (
@@ -231,6 +221,33 @@ $elements: (
         dark: v(common, shadow, color, dark)
       )
     )
+  ),
+  input: (
+    font-size: v(common, font-size, base),
+    height: (
+      base: v(control, height, base),
+      small: v(control, height, small),
+      large: v(control, height, large)
+    ),
+    line-height: (
+      base: v(control, line-height, base),
+      small: v(control, line-height, small),
+      large: v(control, line-height, large)
+    ),
+    min-width: 230px,
+    background-color: (
+      focus: v(common, background-color, white),
+      base: cp(15%, 99%)
+    ),
+    border: v(control, border),
+    border-color: (
+      primary: v(control, border-color, primary),
+      tertiary: v(control, border-color, tertiary),
+      secondary: v(control, border-color, secondary),
+      dark: v(common, border-color, dark)
+    ),
+    border-radius: v(control, border-radius),
+    shadow: v(common, shadow, inset) v(common, shadow, color, base)
   )
 );
 
