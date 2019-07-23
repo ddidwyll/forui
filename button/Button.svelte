@@ -110,13 +110,13 @@
     background-color: var(--button-background-color-tertiary-inverse);
   }
   button.clean {
+    position: relative;
     border-color: transparent;
     background-color: transparent;
     box-shadow: none;
-    transform: none;
   }
   button.clean:hover:not(:disabled):not(.active) {
-    transform: translateY(1px);
+    top: 1px;
   }
   button.clean.active {
     border-radius: 1rem;

@@ -1,4 +1,4 @@
-<div class:block>
+<div class:block class:small>
   <input
     {type}
     class:valid
@@ -32,6 +32,8 @@
   export let clean = false
   export let simple = false
   export let block = false
+  export let small = false
+  export let large = false
   export let required = false
   export let type = 'text'
   export let value = ''
@@ -119,6 +121,10 @@
     outline: none;
     flex-grow: 1;
   }
+  div.small, div.small > input {
+    height: var(--input-height-small);
+    line-height: var(--input-line-height-small);
+  }
   input:hover:not(:disabled),
   input:focus {
     border-color: var(--input-border-color-dark);
@@ -139,6 +145,7 @@
     border-bottom-width: 2px;
     border-radius: 1px;
     box-shadow: none;
+    background-color: transparent;
   }
   input:disabled {
     cursor: not-allowed;

@@ -1,6 +1,6 @@
 <header>
   <Container>
-    <slot name="left" />
+    <slot />
     <slot name="center" />
     <slot name="right" />
   </Container>
@@ -33,7 +33,7 @@
     text-overflow: ellipsis;
     padding: 2px 0;
   }
-  header > :global(div > :last-child) {
+  header > :global(div > :last-child:not(:first-child)) {
     text-align: right;
   }
   header > :global(div > :not(:last-child):not(:first-child)) {
