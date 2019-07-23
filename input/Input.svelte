@@ -13,6 +13,7 @@
     {disabled}
     {hidden}
     {required}
+    {autofocus}
     on:input={e => bubble(e)}
     on:change={e => bubble(e)}
     on:keydown={e => enter(e)} />
@@ -39,6 +40,7 @@
   export let value = ''
   export let min = null
   export let max = null
+  export let autofocus = false
 
   const format = value => {
     switch (type) {

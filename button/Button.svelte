@@ -4,6 +4,7 @@
   title={label}
   {disabled}
   {hidden}
+  {style}
   class:active
   class:success
   class:inverse
@@ -27,6 +28,7 @@
   export let small = false
   export let large = false
   export let block = false
+  export let style = null
 </script>
 
 <style>
