@@ -80,7 +80,10 @@ $elements: (
       small: 3vmin
     ),
     border: (
-      base: 1px solid
+      width: (
+        base: 1px
+      ),
+      base: v(common, border, width, base) solid
     ),
     border-color: (
       base: cp(10%, 88%),
@@ -152,9 +155,9 @@ $elements: (
       large: 0 1.1rem
     ),
     line-height: (
-      base: calc(var(--control-height-base) - 1px),
-      small: calc(var(--control-height-small) - 1px),
-      large: calc(var(--control-height-large) - 1px)
+      base: calc(var(--control-height-base) - var(--common-border-width-base) * 2),
+      small: calc(var(--control-height-small) - var(--common-border-width-base) * 2),
+      large: calc(var(--control-height-large) - var(--common-border-width-base) * 2)
     ),
     border: v(common, border, base),
     border-color: (

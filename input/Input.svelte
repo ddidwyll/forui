@@ -134,7 +134,7 @@
   }
   input:focus:not(.clean) {
     outline-offset: -4px;
-    outline: 1px dashed var(--input-border-color-primary);
+    outline: 0px dashed var(--input-border-color-primary);
   }
   input.valid:not(#hack) {
     border-color: var(--input-border-color-secondary);
@@ -158,7 +158,7 @@
   }
   label {
     position: absolute;
-    top: 0;
+    top: var(--common-border-width-base);
     left: 0.8rem;
     line-height: var(--input-line-height-base);
     pointer-events: none;

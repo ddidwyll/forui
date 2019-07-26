@@ -34,7 +34,8 @@
 <style>
   button {
     display: inline-flex;
-    align-items: center;
+    align-items: baseline;
+    justify-content: space-between;
     height: var(--button-height-base);
     padding: var(--control-padding-base);
     font-size: var(--button-font-size-base);
@@ -51,6 +52,8 @@
       var(--button-shadow-color-primary-base);
     outline: none;
     vertical-align: middle;
+    overflow: hidden;
+    word-break: break-all;
   }
   button:disabled {
     opacity: 0.6;
@@ -58,13 +61,13 @@
   }
   button:focus:not(.active) {
     outline-offset: -4px;
-    outline: 1px dashed var(--button-border-color-primary);
+    outline: 0px dashed var(--button-border-color-primary);
   }
   button:hover:not(:disabled):not(.active) {
     opacity: 0.8;
     box-shadow: none;
   }
-  button:active:not(.inverse):not(:disabled),
+  button:active:not(.inverse):not(.clean),
   button.active:not(.inverse):not(:disabled) {
     outline: none;
     box-shadow: var(--button-shadow-inset)
@@ -135,5 +138,9 @@
   }
   button.block {
     display: flex;
+  }
+  button > :global(img) {
+    height: 9px;
+    width: auto;
   }
 </style>
