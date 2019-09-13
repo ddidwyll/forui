@@ -12,11 +12,13 @@
   class:clean
   class:large
   class:small
+  class:image
   class:block>
   <slot>{label || ''}</slot>
 </button>
 
 <script>
+  export let image = null
   export let label = null
   export let disabled = false
   export let hidden = false

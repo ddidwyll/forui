@@ -11,6 +11,8 @@
 <style>
   main {
     padding: var(--container-padding-x) 0 0;
+    flex-grow: 1;
+    overflow: hidden;
   }
   main > :global(div) {
     box-shadow: var(--container-shadow);

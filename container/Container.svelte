@@ -13,7 +13,6 @@
     width: var(--container-width-base);
     max-width: var(--container-max-width);
     height: 100%;
-    max-height: 100%;
     background-color: var(--common-background-color-white);
     overflow: hidden;
     margin: 0 auto;

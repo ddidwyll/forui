@@ -2,13 +2,9 @@ html,
 body {
   display: flex;
   flex-direction: column;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   margin: 0;
   padding: 0;
+  height: 100%;
   overflow: hidden;
   cursor: default;
   color: var(--common-color-base);
@@ -20,9 +16,12 @@ body {
   line-height: var(--common-line-height-base);
 }
 
-body > main {
-  flex-grow: 1;
-  overflow: hidden;
+@supports (-webkit-overflow-scrolling: touch) {
+  html {
+    height: auto;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 main,
@@ -126,6 +125,10 @@ button:-moz-focusring,
 
 fieldset {
   padding: 0.35em 0.75em 0.625em;
+}
+
+table {
+  width: 100%;
 }
 
 legend {
