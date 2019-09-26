@@ -123,7 +123,8 @@
     outline: none;
     flex-grow: 1;
   }
-  div.small, div.small > input {
+  div.small,
+  div.small > input {
     height: var(--input-height-small);
     line-height: var(--input-line-height-small);
   }

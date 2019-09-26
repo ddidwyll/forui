@@ -124,6 +124,20 @@ $elements: (
     border: 0,
     shadow: v(common, shadow, large) v(common, shadow, color, base)
   ),
+  container-small: (
+    width: (
+      base: 90%,
+      small: 90%
+    ),
+    max-width: 600px,
+    height: auto,
+    min-height: 180px,
+    max-height: 85%,
+    padding: (
+      x: v(common, padding, small),
+      y: v(common, padding, base)
+    )
+  ),
   header: (
     width: (
       base: 100%
@@ -155,9 +169,12 @@ $elements: (
       large: 0 1.1rem
     ),
     line-height: (
-      base: calc(var(--control-height-base) - var(--common-border-width-base) * 2),
-      small: calc(var(--control-height-small) - var(--common-border-width-base) * 2),
-      large: calc(var(--control-height-large) - var(--common-border-width-base) * 2)
+      base:
+        calc(var(--control-height-base) - var(--common-border-width-base) * 2),
+      small:
+        calc(var(--control-height-small) - var(--common-border-width-base) * 2),
+      large:
+        calc(var(--control-height-large) - var(--common-border-width-base) * 2)
     ),
     border: v(common, border, base),
     border-color: (

@@ -145,4 +145,8 @@
     height: 9px;
     width: auto;
   }
+  button > :global(svg) {
+    align-self: center;
+    fill: var(--button-color-primary-base);
+  }
 </style>
