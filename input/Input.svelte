@@ -7,19 +7,32 @@
     class:simple
     value={format(value)}
     min={min ? range(min) : null}
-    max={min ? range(max) : null}
+    max={max ? range(max) : null}
+    maxLength={type === 'text' && max ? max : null}
     placeholder={label}
     aria-label={label}
     {disabled}
     {hidden}
     {required}
     {autofocus}
+    on:focus
+    on:blur
     on:input={e => bubble(e)}
     on:change={e => bubble(e)}
     on:keydown={e => enter(e)} />
-  <label class:active={value || value === 0}>{label || ''}</label>
+  <label class:active={value || value === 0}>
+    {label || ''}
+    {#if type === 'text'}{max ? `(${length}/${max})` : ''}{/if}
+  </label>
   <slot />
 </div>
+{#if hints && hints.length && !~hints.indexOf(value)}
+  <figure>
+    {#each filtered as hint}
+      <pre on:click={() => bubbleEmu(hint)}>{hint}</pre>
+    {/each}
+  </figure>
+{/if}
 
 <script>
   import { createEventDispatcher } from 'svelte'
@@ -36,11 +49,14 @@
   export let small = false
   export let large = false
   export let required = false
+  export let hints = null
   export let type = 'text'
   export let value = ''
   export let min = null
   export let max = null
   export let autofocus = false
+
+  let length = 0
 
   const format = value => {
     switch (type) {
@@ -55,7 +71,9 @@
       case 'number':
         return +value || null
       default:
-        return value || ''
+        value = value || ''
+        length = value.length
+        return max ? value.slice(0, max) : value
     }
   }
 
@@ -66,8 +84,12 @@
       case 'number':
         return value || ''
       default:
-        return ''
+        return null
     }
+  }
+
+  const bubbleEmu = value => {
+    bubble({ type: 'input', target: { value } })
   }
 
   const bubble = e => {
@@ -82,7 +104,7 @@
         value = +target || 0
         break
       default:
-        value = target
+        value = max ? target.slice(0, max) : target
     }
     dispatch(e.type, value)
   }
@@ -92,6 +114,10 @@
     e.preventDefault()
     dispatch('enter')
   }
+
+  $: filtered = (hints || []).filter(
+    hint => ~hint.toUpperCase().indexOf((value || '').toUpperCase())
+  )
 </script>
 
 <style>
@@ -163,6 +189,7 @@
     left: 0.8rem;
     line-height: var(--input-line-height-base);
     pointer-events: none;
+    opacity: 0.7;
   }
   label.active,
   input:focus + label {
@@ -170,6 +197,7 @@
     line-height: 1;
     top: -18%;
     background: var(--input-background-color-focus);
+    opacity: 1;
   }
   input.simple + label.active,
   input.simple:focus + label {
@@ -197,6 +225,12 @@
   :global(::-webkit-inner-spin-button),
   :global(::-webkit-outer-spin-button) {
     -webkit-appearance: none;
+    margin: 0;
+  }
+  figure {
+    background: var(--input-background-color-base);
+    display: flex;
+    flex-wrap: nowrap;
     margin: 0;
   }
 </style>

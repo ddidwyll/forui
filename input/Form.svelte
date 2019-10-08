@@ -1,8 +1,20 @@
-<form on:submit {autocomplete}>
-  <legend>{title}</legend>
-  {#each fields as { name, label, type, required, min, max, autofocus, disabled, hidden, simple, clean, block, small, large }}
+<form on:submit|preventDefault={() => null} {autocomplete} noValidate>
+  <div>
+    {#if close}
+      <Button
+        label={close}
+        danger
+        small
+        center
+        on:click={() => dispatch('close')} />
+    {/if}
+    <legend>{title}</legend>
+    {#if submit}
+      <Button label={submit} success small center on:click={() => ok()} />
+    {/if}
+  </div>
+  {#each fields as { name, label, type, required, min, max, autofocus, disabled, hidden, simple, clean, block, small, large, hints }}
     <Input
-      {label}
       {type}
       {required}
       {min}
@@ -14,8 +26,15 @@
       {clean}
       {block}
       {small}
+      {hints}
       {large}
+      label={$errors[name] || label}
+      invalid={$errors[name]}
+      valid={$errors[name] === ''}
+      on:blur={() => needCheck(name)}
+      on:focus={() => needCheck(name, false)}
       on:input={e => input(e, name)}
+      on:enter={() => ok()}
       value={result[name]} />
   {/each}
   <slot name="buttons" />
@@ -25,16 +44,41 @@
   export let title = ''
   export let fields = []
   export let autocomplete = true
+  export let close = ''
+  export let submit = ''
+  export let result = {}
 
   import { createEventDispatcher } from 'svelte'
+  import Button from '../button/Button.svelte'
   import Input from './Input.svelte'
+  import { writable } from 'svelte/store'
 
-  let result = {}
   const dispatch = createEventDispatcher()
   const input = (e, key) => {
     result[key] = e.detail
     result = { ...result }
     dispatch('input', result)
+  }
+  const ok = () => dispatch('submit', result)
+
+  const { subscribe, update } = writable({})
+  const errors = { subscribe }
+  const needCheck = (field, need = true) =>
+    update(errors => {
+      if (need) errors[field] = ''
+      else delete errors[field]
+      return { ...errors }
+    })
+  $: {
+    fields.forEach(field => {
+      const key = field.name
+      if ($errors[key] === undefined) return
+      update(errors => {
+        if (!errors || errors[key] === undefined) return errors
+        if (field.required && !result[key]) errors[key] = field.required
+        return { ...errors }
+      })
+    })
   }
 </script>
 
@@ -44,6 +88,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
+  }
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+  div > :global(button) {
+    min-width: 100px;
   }
   legend {
     font-size: 1.2rem;

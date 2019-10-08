@@ -1,13 +1,16 @@
-<aside>
-  <Container small scrolly>
-    <slot />
-  </Container>
-</aside>
+{#if open}
+  <aside transition:fade>
+    <Container small scrolly>
+      <slot />
+    </Container>
+  </aside>
+{/if}
 
 <script>
   export let open = false
 
   import Container from '../container/Container.svelte'
+  import { fade } from 'svelte/transition'
 </script>
 
 <style>

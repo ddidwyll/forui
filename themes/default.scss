@@ -41,8 +41,8 @@ $elements: (
   ht: calc(var(--hp) + var(--tertiary)),
   common: (
     color: (
-      base: cp(20%, 40%),
-      light: cp(10%, 55%),
+      base: cp(15%, 30%),
+      light: cp(20%, 50%),
       white: #fff
     ),
     font-size: (
@@ -57,12 +57,12 @@ $elements: (
       base: 1.5
     ),
     background-color: (
-      light: cp(18%, 97%),
-      lighten: cp(10%, 98.5%),
-      white: cp(0%, 99.5%),
+      light: cp(5%, 94%),
+      lighten: cp(5%, 97.2%),
+      white: cp(0%, 100%),
       dark: cp(15%, 43%),
-      tertiary: ct(50%, 96.5%),
-      secondary: cs(60%, 95.5%)
+      tertiary: ct(50%, 95%),
+      secondary: cs(60%, 95%)
     ),
     background-image: url('/noise.png'),
     font-family:
@@ -86,17 +86,18 @@ $elements: (
       base: v(common, border, width, base) solid
     ),
     border-color: (
-      base: cp(10%, 88%),
-      dark: cp(10%, 80%)
+      base: cp(5%, 81%),
+      dark: cp(5%, 72%)
     ),
     shadow: (
-      large: 0 0 1rem 0,
-      inset: inset 0 0 3px 0,
+      large: 0 0 8px 2px,
+      inset: inset 0 0 4px 0,
+      deeper: inset 0 0 3px 1px,
       inverse: inset 0 0 8px 0px,
-      small: 0 0 2px 0,
+      small: 0 0 3px 0,
       color: (
-        base: cp(10%, 88%),
-        dark: cp(10%, 27%)
+        base: cp(5%, 85%),
+        dark: cp(5%, 30%)
       )
     ),
     transition: (
@@ -179,8 +180,8 @@ $elements: (
     border: v(common, border, base),
     border-color: (
       primary: v(common, border-color, base),
-      secondary: cs(70%, 75%),
-      tertiary: ct(80%, 81%)
+      secondary: cs(50%, 65%),
+      tertiary: ct(50%, 71%)
     ),
     border-radius: 2px
   ),
@@ -232,7 +233,7 @@ $elements: (
     border-radius: v(control, border-radius),
     shadow: (
       base: v(common, shadow, small),
-      inset: v(common, shadow, inset),
+      inset: v(common, shadow, deeper),
       inverse: v(common, shadow, inverse)
     ),
     shadow-color: (
@@ -257,7 +258,7 @@ $elements: (
     min-width: 230px,
     background-color: (
       focus: v(common, background-color, white),
-      base: cp(15%, 99%)
+      base: cp(10%, 99%)
     ),
     border: v(control, border),
     border-color: (

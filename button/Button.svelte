@@ -10,9 +10,12 @@
   class:inverse
   class:danger
   class:clean
+  class:card
   class:large
   class:small
   class:image
+  class:center
+  class:width
   class:block>
   <slot>{label || ''}</slot>
 </button>
@@ -29,7 +32,10 @@
   export let clean = false
   export let small = false
   export let large = false
+  export let card = false
   export let block = false
+  export let width = false
+  export let center = false
   export let style = null
 </script>
 
@@ -57,9 +63,13 @@
     overflow: hidden;
     word-break: break-all;
   }
+  button.center {
+    justify-content: center;
+  }
   button:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
+    box-shadow: none;
   }
   button:focus:not(.active) {
     outline-offset: -4px;
@@ -148,5 +158,15 @@
   button > :global(svg) {
     align-self: center;
     fill: var(--button-color-primary-base);
+  }
+  button.width {
+    width: 100%;
+  }
+  button.card {
+    min-height: var(--button-height-large);
+    line-height: inherit;
+    height: auto;
+    word-break: normal;
+    text-align: inherit;
   }
 </style>
