@@ -1,5 +1,5 @@
 <main>
-  <Container scrollx scrolly>
+  <Container scrolly>
     <slot />
   </Container>
 </main>
@@ -17,5 +17,7 @@
   main > :global(div) {
     box-shadow: var(--container-shadow);
     border: var(--container-border);
+    padding-top: var(--container-padding-y);
+    padding-bottom: var(--container-padding-y);
   }
 </style>

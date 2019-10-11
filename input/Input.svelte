@@ -1,5 +1,6 @@
 <div class:block class:small>
   <input
+    bind:this={input}
     {type}
     class:valid
     class:invalid
@@ -24,15 +25,15 @@
     {label || ''}
     {#if type === 'text'}{max ? `(${length}/${max})` : ''}{/if}
   </label>
+  {#if hints && filtered.length && !~hints.indexOf(value)}
+    <figure>
+      {#each filtered as hint}
+        <span on:click={() => bubbleEmu(hint)}>{hint}</span>
+      {/each}
+    </figure>
+  {/if}
   <slot />
 </div>
-{#if hints && hints.length && !~hints.indexOf(value)}
-  <figure>
-    {#each filtered as hint}
-      <pre on:click={() => bubbleEmu(hint)}>{hint}</pre>
-    {/each}
-  </figure>
-{/if}
 
 <script>
   import { createEventDispatcher } from 'svelte'
@@ -56,6 +57,7 @@
   export let max = null
   export let autofocus = false
 
+  let input = null
   let length = 0
 
   const format = value => {
@@ -89,6 +91,7 @@
   }
 
   const bubbleEmu = value => {
+    if (input) input.focus()
     bubble({ type: 'input', target: { value } })
   }
 
@@ -203,7 +206,7 @@
   input.simple:focus + label {
     opacity: 0;
   }
-  div > :global(:last-child:not(label)) {
+  div > :global(:last-child:not(label):not(figure)) {
     position: absolute;
     right: 0;
     cursor: auto;
@@ -228,9 +231,31 @@
     margin: 0;
   }
   figure {
-    background: var(--input-background-color-base);
+    background-color: var(--input-background-color-focus);
+    padding: var(--control-padding-base);
     display: flex;
-    flex-wrap: nowrap;
+    border: var(--input-border);
+    border-color: var(--input-border-color-dark);
+    border-radius: var(--input-border-radius);
+    border-width: 0;
+    flex-direction: column;
     margin: 0;
+    position: absolute;
+    top: calc(100% - 2px);
+    left: 0;
+    right: 0;
+    max-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 2;
+  }
+  input:focus + label + figure,
+  figure:hover {
+    max-height: 100px;
+    border-width: 1px;
+    box-shadow: var(--input-shadow);
+  }
+  figure > span {
+    cursor: pointer;
   }
 </style>

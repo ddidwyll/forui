@@ -117,7 +117,7 @@ $elements: (
       base: 90%,
       small: 100%
     ),
-    max-width: 1200px,
+    max-width: 1240px,
     padding: (
       x: v(common, padding, small),
       y: v(common, padding, base)
@@ -133,7 +133,7 @@ $elements: (
     max-width: 600px,
     height: auto,
     min-height: 180px,
-    max-height: 85%,
+    max-height: 95%,
     padding: (
       x: v(common, padding, small),
       y: v(common, padding, base)
@@ -295,117 +295,3 @@ $elements: (
     }
   }
 }
-
-//:root {
-//  /* saturation full grayscale */
-//  --sfg: 0%;
-//  /* saturation grayscale */
-//  --sg: 10%;
-//  /* saturation semi grayscale */
-//  --ssg: 20%;
-//  /* saturation semi colore */
-//  --ssc: 40%;
-//  /* saturation colore */
-//  --sc: 80%;
-//  /* saturation full colore */
-//  --sfc: 80%;
-//
-//  /* lightness full dark */
-//  --lfd: 5%;
-//  /* lightness dark */
-//  --ld: 25%;
-//  /* lightness semi dark */
-//  --lsd: 37%;
-//  /* lightness middle */
-//  --lm: 80%;
-//  /* lightness semi light */
-//  --lsl: 86%;
-//  /* lightness light */
-//  --ll: 97%;
-//  /* lightness full light */
-//  --lfl: 99.5%;
-//
-//  /* alpha opaque */
-//  --ao: 1;
-//  /* alpha semi opaque */
-//  --aso: 0.89;
-//  /* alpha semi transparent */
-//  --ast: 0.45;
-//  /* alpha transparent */
-//  --at: 0;
-//
-//  /* colors */
-//  --primary-txt: hsl(var(--hp), 10%, 37%);
-//  --secondary-txt: hsl(var(--hs), 10%, 37%);
-//  --white-txt: hsl(0, 0%, 99.5);
-//  --button-txt: hsl(var(--hp), 20%, 37%);
-//  --light-bg: hsl(var(--hp), 20%, 97%);
-//  --dark-bg: hsla(var(--hp), 10%, 37%, 0.6);
-//  --trans-bg: hsla(var(--hp), 20%, 97%, 0.8);
-//  --white-bg: hsl(0, 0%, 99.5);
-//  --button-bg: hsl(var(--hp), 20%, 99.5);
-//  --button-bg-inverse: hsl(var(--hp), 10%, 37%);
-//  --button-bg-inverse-success: hsl(var(--hs), 80%, 37%);
-//  --button-bg-inverse-danger: hsl(var(--ht), 80%, 37%);
-//  --button-bg-success: hsl(var(--hs), 80%, 86%);
-//  --button-bg-danger: hsl(var(--ht), 80%, 86%);
-//  --border-color: hsl(var(--hp), 10%, 86%);
-//  --border-dark-color: hsl(var(--hp), 0%, 80%);
-//  --shadow-color: hsl(var(--hp), 10%, 86%);
-//  --shadow-trans-color: hsla(var(--hp), 0%, 25%, 0.1);
-//
-//  /* text sizes */
-//  --font-size: 100%;
-//  --line-height: 1.5;
-//  --h1-size: 1.55rem;
-//  --h1-line-size: 2;
-//  --button-font-size: 0.64rem;
-//
-//  /* font weights */
-//  --font-weight: 400;
-//  --font-weight-heading: 400;
-//  --font-weight-bolder: 500;
-//
-//  /* shadows */
-//  --shadow-small: 0 0 3px 0 var(--shadow-color);
-//  --shadow-large: 0 0 11px 1px var(--shadow-color);
-//  --button-shadow: var(--shadow-small);
-//
-//  /* borders */
-//  --default-border: 0 none;
-//  --button-border: 1px solid var(--border-color);
-//
-//  /* radiuses */
-//  --radius-xsmall: 4px;
-//  --button-border-radius: var(--radius-xsmall);
-//
-//  /* margins */
-//  --margin-xsmall: 0.6rem;
-//  --margin-small: 1rem;
-//  --margin-container: 2vw;
-//  --margin-container-large: 3vw;
-//
-//  /* paddings */
-//  --padding-xsmall: 0.6rem;
-//  --padding-small: 1rem;
-//  --padding-container: 2vw;
-//  --padding-container-large: 3vw;
-//
-//  /* transitions */
-//  --transition: all 0.12s ease-out;
-//
-//  /* container */
-//  --container-width: 90%;
-//  --container-max-width: 1200px;
-//
-//  /* header */
-//  --header-width: 100%;
-//  --header-height: 65px;
-//
-//  /* button */
-//  --button-case: uppercase;
-//  --button-height: 2.4rem;
-//
-//  /* input */
-//  --input-font-size: 0.82rem;
-//}*/

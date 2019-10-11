@@ -18,6 +18,9 @@
   class:width
   class:block>
   <slot>{label || ''}</slot>
+  <figure>
+    <slot name="badge" />
+  </figure>
 </button>
 
 <script>
@@ -41,6 +44,7 @@
 
 <style>
   button {
+    position: relative;
     display: inline-flex;
     align-items: baseline;
     justify-content: space-between;
@@ -168,5 +172,12 @@
     height: auto;
     word-break: normal;
     text-align: inherit;
+  }
+  figure {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    margin: 0;
+    padding: 0;
   }
 </style>

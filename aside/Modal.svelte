@@ -1,5 +1,5 @@
 {#if open}
-  <aside transition:fade>
+  <aside transition:fade on:click={e => close(e)}>
     <Container small scrolly>
       <slot />
     </Container>
@@ -11,20 +11,28 @@
 
   import Container from '../container/Container.svelte'
   import { fade } from 'svelte/transition'
+  import { createEventDispatcher } from 'svelte'
+  const dispatch = createEventDispatcher()
+
+  const close = e => {
+    if (e.target.nodeName !== 'ASIDE') return
+    dispatch('close')
+  }
 </script>
 
 <style>
   aside {
+    background-color: #eeeeeeee;
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: var(--common-background-color-light);
     display: flex;
     justify-content: center;
     align-items: center;
     padding-bottom: 10%;
+    z-index: 5;
   }
   aside > :global(*) {
     background-color: var(--common-background-color-white);
