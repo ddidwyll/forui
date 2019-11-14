@@ -1,0 +1,297 @@
+@function c($h, $s, $l, $o: 1) {
+  @return hsla($h, $s, $l, $o);
+}
+
+@function cp($s, $l, $o: 1) {
+  @return c(var(--hp), $s, $l, $o);
+}
+
+@function cs($s, $l, $o: 1) {
+  @return c(var(--hs), $s, $l, $o);
+}
+
+@function ct($s, $l, $o: 1) {
+  @return c(var(--ht), $s, $l, $o);
+}
+
+@function v($elem, $prop: null, $variant: null, $state: null) {
+  @if ($prop == null) {
+    @return var(--#{$elem});
+  }
+  @elseif ($variant == null) {
+    @return var(--#{$elem}-#{$prop});
+  }
+  @elseif ($state == null) {
+    @return var(--#{$elem}-#{$prop}-#{$variant});
+  } @else {
+    @return var(--#{$elem}-#{$prop}-#{$variant}-#{$state});
+  }
+}
+
+@mixin v($prop, $elem, $variant: null, $state: null) {
+  #{$prop}: #{v($elem, $prop, $variant, $state)};
+}
+
+$elements: (
+  primary: 180,
+  hp: var(--primary),
+  secondary: -50,
+  hs: calc(var(--hp) + var(--secondary)),
+  tertiary: 200,
+  ht: calc(var(--hp) + var(--tertiary)),
+  common: (
+    color: (
+      base: cp(15%, 30%),
+      light: cp(20%, 50%),
+      white: #fff
+    ),
+    font-size: (
+      base: 1rem,
+      small: 0.7rem
+    ),
+    font-weight: (
+      base: 400,
+      bold: 500
+    ),
+    line-height: (
+      base: 1.5
+    ),
+    background-color: (
+      light: cp(5%, 94%),
+      lighten: cp(5%, 97.2%),
+      white: cp(0%, 100%),
+      dark: cp(15%, 43%),
+      tertiary: ct(50%, 95%),
+      secondary: cs(60%, 95%)
+    ),
+    background-image: url('/noise.png'),
+    font-family:
+      "Roboto, -apple-system, BlinkMacSystemFont,
+      'Segoe UI', Oxygen-Sans, Ubuntu, Cantarell,
+      'Helvetica Neue', sans-serif",
+    margin: (
+      base: 4vmin,
+      large: 6vmin,
+      small: 3vmin
+    ),
+    padding: (
+      base: 4vmin,
+      large: 6vmin,
+      small: 3vmin
+    ),
+    border: (
+      width: (
+        base: 1px
+      ),
+      base: v(common, border, width, base) solid
+    ),
+    border-color: (
+      base: cp(5%, 81%),
+      dark: cp(5%, 72%)
+    ),
+    shadow: (
+      large: 0 0 8px 2px,
+      inset: inset 0 0 4px 0,
+      deeper: inset 0 0 3px 1px,
+      inverse: inset 0 0 8px 0px,
+      small: 0 0 3px 0,
+      color: (
+        base: cp(5%, 85%),
+        dark: cp(5%, 30%)
+      )
+    ),
+    transition: (
+      base: all 0.48s ease-out
+    )
+  ),
+  scrollbar: (
+    background: (
+      base: cp(10%, 77%),
+      hover: cp(10%, 55%)
+    ),
+    size: 5px,
+    radius: 2px
+  ),
+  container: (
+    width: (
+      base: 90%,
+      small: 100%
+    ),
+    max-width: 1240px,
+    padding: (
+      x: v(common, padding, small),
+      y: v(common, padding, base)
+    ),
+    border: 0,
+    shadow: v(common, shadow, large) v(common, shadow, color, base)
+  ),
+  container-small: (
+    width: (
+      base: 90%,
+      small: 90%
+    ),
+    max-width: 600px,
+    height: auto,
+    min-height: 180px,
+    max-height: 95%,
+    padding: (
+      x: v(common, padding, small),
+      y: v(common, padding, base)
+    )
+  ),
+  header: (
+    width: (
+      base: 100%
+    ),
+    height: (
+      base: 65px
+    )
+  ),
+  h: (
+    font-size: (
+      h1: 1.5rem
+    ),
+    font-weight: (
+      base: v(common, font-weight, base)
+    ),
+    line-height: (
+      base: v(common, line-height, base)
+    )
+  ),
+  control: (
+    height: (
+      base: 39px,
+      small: 29px,
+      large: 50px
+    ),
+    padding: (
+      base: 0 0.77rem,
+      small: 0 0.3rem,
+      large: 0 1.1rem
+    ),
+    line-height: (
+      base:
+        calc(var(--control-height-base) - var(--common-border-width-base) * 2),
+      small:
+        calc(var(--control-height-small) - var(--common-border-width-base) * 2),
+      large:
+        calc(var(--control-height-large) - var(--common-border-width-base) * 2)
+    ),
+    border: v(common, border, base),
+    border-color: (
+      primary: v(common, border-color, base),
+      secondary: cs(50%, 65%),
+      tertiary: ct(50%, 71%)
+    ),
+    border-radius: 2px
+  ),
+  button: (
+    color: (
+      primary: (
+        base: v(common, color, base),
+        light: v(common, color, light)
+      )
+    ),
+    font-size: (
+      base: v(common, font-size, small)
+    ),
+    font-weight: (
+      base: v(common, font-weight, bold)
+    ),
+    height: (
+      base: v(control, height, base),
+      small: v(control, height, small),
+      large: v(control, height, large)
+    ),
+    line-height: (
+      base: v(control, line-height, base),
+      small: v(control, line-height, small),
+      large: v(control, line-height, large)
+    ),
+    text-transform: uppercase,
+    letter-spacing: 1px,
+    background-color: (
+      primary: (
+        base: v(common, background-color, lighten),
+        inverse: v(common, background-color, dark)
+      ),
+      secondary: (
+        base: v(common, background-color, secondary),
+        inverse: cs(40%, 55%)
+      ),
+      tertiary: (
+        base: v(common, background-color, tertiary),
+        inverse: ct(40%, 60%)
+      )
+    ),
+    border: v(control, border),
+    border-color: (
+      primary: v(control, border-color, primary),
+      tertiary: v(control, border-color, tertiary),
+      secondary: v(control, border-color, secondary)
+    ),
+    border-radius: v(control, border-radius),
+    shadow: (
+      base: v(common, shadow, small),
+      inset: v(common, shadow, deeper),
+      inverse: v(common, shadow, inverse)
+    ),
+    shadow-color: (
+      primary: (
+        base: v(common, shadow, color, base),
+        dark: v(common, shadow, color, dark)
+      )
+    )
+  ),
+  input: (
+    font-size: v(common, font-size, base),
+    height: (
+      base: v(control, height, base),
+      small: v(control, height, small),
+      large: v(control, height, large)
+    ),
+    line-height: (
+      base: v(control, line-height, base),
+      small: v(control, line-height, small),
+      large: v(control, line-height, large)
+    ),
+    min-width: 230px,
+    background-color: (
+      focus: v(common, background-color, white),
+      base: cp(10%, 99%)
+    ),
+    border: v(control, border),
+    border-color: (
+      primary: v(control, border-color, primary),
+      tertiary: v(control, border-color, tertiary),
+      secondary: v(control, border-color, secondary),
+      dark: v(common, border-color, dark)
+    ),
+    border-radius: v(control, border-radius),
+    shadow: v(common, shadow, inset) v(common, shadow, color, base)
+  )
+);
+
+:root {
+  @each $elem, $props in $elements {
+    @if type-of($props) == 'map' {
+      @each $prop, $value in $props {
+        @if type-of($value) == 'map' {
+          @each $var, $val in $value {
+            @if type-of($val) == 'map' {
+              @each $st, $v in $val {
+                --#{$elem}-#{$prop}-#{$var}-#{$st}: #{$v};
+              }
+            } @else {
+              --#{$elem}-#{$prop}-#{$var}: #{$val};
+            }
+          }
+        } @else {
+          --#{$elem}-#{$prop}: #{$value};
+        }
+      }
+    } @else {
+      --#{$elem}: #{$props};
+    }
+  }
+}
