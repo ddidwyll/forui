@@ -1,4 +1,4 @@
-<div class:block class:small>
+<div class:block class:small class:large>
   <input
     bind:this={input}
     {type}
@@ -157,6 +157,11 @@
     height: var(--input-height-small);
     line-height: var(--input-line-height-small);
   }
+  div.large,
+  div.large > input {
+    height: var(--input-height-large);
+    line-height: var(--input-line-height-large);
+  }
   input:hover:not(:disabled),
   input:focus {
     border-color: var(--input-border-color-dark);
@@ -193,14 +198,24 @@
     line-height: var(--input-line-height-base);
     pointer-events: none;
     opacity: 0.7;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 80%;
+    font-weight: normal;
   }
-  label.active,
+  div.small > label {
+    line-height: var(--input-line-height-small);
+  }
+  div.large > label {
+    line-height: var(--input-line-height-large);
+  }
+  label.active:not(#hack),
   input:focus + label {
     color: var(--input-border-color-dark);
     line-height: 1;
     top: -18%;
-    background: var(--input-background-color-focus);
     opacity: 1;
+    background: linear-gradient(0deg, var(--input-background-color-focus), var(--input-background-color-focus),  transparent, transparent);
   }
   input.simple + label.active,
   input.simple:focus + label {

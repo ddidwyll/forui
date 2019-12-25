@@ -1,4 +1,4 @@
-<div class:scrollx class:scrolly class:small>
+<div class:scrollx class:scrolly class:small class:middle>
   <slot />
 </div>
 
@@ -6,6 +6,7 @@
   export let scrollx = false
   export let scrolly = false
   export let small = false
+  export let middle = false
 </script>
 
 <style>
@@ -36,6 +37,12 @@
     overflow-y: overlay;
     padding-left: var(--container-padding-y);
     padding-right: var(--container-padding-y);
+  }
+  div.middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
   }
   @media screen and (max-width: 900px) {
     div {
