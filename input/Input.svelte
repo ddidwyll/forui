@@ -22,7 +22,9 @@
     on:keydown={e => enter(e)} />
   <label class:active={value || value === 0}>
     {label || ''}
-    {#if type === 'text'}{max ? `(${length}/${max})` : ''}{/if}
+    {#if type === 'text' && max && length}
+      <sup>({`${length}/${max}`})</sup>
+    {/if}
   </label>
   {#if hints && filtered.length && !~hints.indexOf(value)}
     <figure>
@@ -52,6 +54,7 @@
   export let hints = null
   export let type = 'text'
   export let value = ''
+  export let filter = null
   export let min = null
   export let max = null
   export let autofocus = false
@@ -73,8 +76,9 @@
         return +value || null
       default:
         value = value || ''
-        length = value.length
-        return max ? value.slice(0, max) : value
+        const filtered = filter ? value.replace(filter, '') : value
+        length = filtered.length
+        return max ? filtered.slice(0, max) : filtered
     }
   }
 
@@ -96,18 +100,19 @@
 
   const bubble = e => {
     const target = e.target.value
-    let value
 
     switch (type) {
       case 'date':
         value = target ? new Date(target).getTime() : null
         break
       case 'number':
-        value = +target || 0
+        value = +target
         break
       default:
-        value = max ? target.slice(0, max) : target
+        const filtered = filter ? target.replace(filter, '') : target
+        value = max ? filtered.slice(0, max) : filtered
     }
+    e.target.value = format(value)
     dispatch(e.type, value)
   }
 
@@ -214,11 +219,11 @@
     color: var(--input-border-color-dark);
     top: -50%;
     opacity: 1;
-    background: linear-gradient(0deg, transparent 43%, var(--input-background-color-base) 43%, var(--input-background-color-base) 52%, transparent 52%);
+    background: linear-gradient(0deg, transparent 40%, var(--input-background-color-base) 40%, var(--input-background-color-base) 52%, transparent 52%);
   }
   input:hover:not(:disabled) + label:not(#hack),
   input:focus + label:not(#hack) {
-    background: linear-gradient(0deg, transparent 43%, var(--input-background-color-focus) 43%, var(--input-background-color-focus) 52%, transparent 52%);
+    background: linear-gradient(0deg, transparent 40%, var(--input-background-color-focus) 40%, var(--input-background-color-focus) 52%, transparent 52%);
   }
   input.simple + label.active,
   input.simple:focus + label {
@@ -275,5 +280,8 @@
   }
   figure > span {
     cursor: pointer;
+  }
+  label > sup {
+    top: -0.2em;
   }
 </style>
