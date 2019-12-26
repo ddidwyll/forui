@@ -1,4 +1,4 @@
-<div class:block class:small class:large>
+<div class:block class:small class:large {hidden}>
   <input
     bind:this={input}
     {type}
@@ -13,7 +13,6 @@
     placeholder={label}
     aria-label={label}
     {disabled}
-    {hidden}
     {required}
     {autofocus}
     on:focus
@@ -193,9 +192,10 @@
   }
   label {
     position: absolute;
-    top: var(--common-border-width-base);
+    top: 0;
     left: 0.8rem;
-    line-height: var(--input-line-height-base);
+    line-height: var(--input-line-height-base) ;
+    height: inherit;
     pointer-events: none;
     opacity: 0.7;
     white-space: nowrap;
@@ -212,10 +212,13 @@
   label.active:not(#hack),
   input:focus + label {
     color: var(--input-border-color-dark);
-    line-height: 1;
-    top: -18%;
+    top: -50%;
     opacity: 1;
-    background: linear-gradient(0deg, var(--input-background-color-focus), var(--input-background-color-focus),  transparent, transparent);
+    background: linear-gradient(0deg, transparent 43%, var(--input-background-color-base) 43%, var(--input-background-color-base) 52%, transparent 52%);
+  }
+  input:hover:not(:disabled) + label:not(#hack),
+  input:focus + label:not(#hack) {
+    background: linear-gradient(0deg, transparent 43%, var(--input-background-color-focus) 43%, var(--input-background-color-focus) 52%, transparent 52%);
   }
   input.simple + label.active,
   input.simple:focus + label {
