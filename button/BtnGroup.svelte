@@ -1,4 +1,4 @@
-<div class:center class:block class:right class:between class:wrap class:gutter>
+<div class:center class:block class:right class:between class:wrap class:gutter {hidden}>
   <slot />
 </div>
 
@@ -9,6 +9,7 @@
   export let between = false
   export let wrap = false
   export let gutter = false
+  export let hidden = false
 </script>
 
 <style>
